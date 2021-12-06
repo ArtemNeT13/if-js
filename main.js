@@ -24,6 +24,7 @@ for(let i = 1; i < testMas.length; i++){
     prMas = prMas * testMas[i];
 }
 console.log('произведение элементов этого массива: ' + prMas);
+
 console.log('\n');
 
 console.log('вывести в консоль те элементы массива, которые больше 5-ти, но меньше 10-ти');
@@ -35,8 +36,8 @@ for(let i = 0; i < testMas2.length; i++){
 }
 console.log('СПОСОБ №2:')
 for(let i of testMas2){
-    if(testMas2[i] > 5 && testMas2[i] < 10){
-        console.log(testMas2[i]);
+    if(i > 5 && i < 10){
+        console.log(i);
     }
 }
 console.log('\n');
@@ -48,9 +49,11 @@ for(let i = 0; i < testMas2.length; i++){
         console.log(testMas3[i]);
     }
 }
-console.log('СПОСОБ №2:')
-for(let i of testMas2){
-    if (testMas3[i] % 2 === 0){
-        console.log(testMas3[i]);
+
+console.log("СПОСОБ №2:");
+for(let i of testMas3){
+    if (i % 2 === 0){
+        console.log(i);
     }
 }
+
