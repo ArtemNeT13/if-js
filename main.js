@@ -33,12 +33,24 @@ for(let i = 0; i < testMas2.length; i++){
         console.log(testMas2[i]);
     }
 }
+console.log('СПОСОБ №2:')
+for(let i of testMas2){
+    if(testMas2[i] > 5 && testMas2[i] < 10){
+        console.log(testMas2[i]);
+    }
+}
 console.log('\n');
 
 console.log('вывести в консоль четные элементы массива');
 let testMas3 = [2, 5, 8, 15, 0, 6, 20, 3];
 for(let i = 0; i < testMas2.length; i++){
-    if (testMas3[i] / 2 > 0 && testMas3[i] % 2 === 0){
+    if (testMas3[i] % 2 === 0){
+        console.log(testMas3[i]);
+    }
+}
+console.log('СПОСОБ №2:')
+for(let i of testMas2){
+    if (testMas3[i] % 2 === 0){
         console.log(testMas3[i]);
     }
 }
