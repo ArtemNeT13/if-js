@@ -64,60 +64,68 @@ console.log('Функция palindrome, которая возвращает bool
 let str = 'madam';
 str = str.toLowerCase();
 function polindrom(str){
-   if(str.length === 1) return true;
-   if(str.length === 2) return str[0] === str[1];
-   if(str[0] === str.slice(-1)) return polindrom(str.slice(1, -1))
+   if(str.length === 1) {
+       return true;
+   }
+   if(str.length === 2) {
+       return str[0] === str[1];
+   }
+   if(str[0] === str.slice(-1)) {
+       return polindrom(str.slice(1, -1))
+   }
     return false;
 }
 console.log(`Слово ${str} полиндром: ${polindrom(str)}`);
 
 console.log('\n');
 console.log(`Функция min(a,b), которая возвращает меньшее из чисел.`);
-function  funMin(a, b){
+function  minValue(a, b){
     if (a < b){return a;}
     return b;
 }
-console.log(`Минимальное число: ${funMin(3, 5)}`);
+console.log(`Минимальное число: ${minValue(3, 5)}`);
 console.log(`Способ №2. Тернарный оператор.`);
-function  funMin2(a, b){
+function  minValue2(a, b){
     return (a < b) ? a : b;
 }
-console.log(`Минимальное число: ${funMin2(3, 5)}`);
+console.log(`Минимальное число: ${minValue2(3, 5)}`);
 
 console.log(`Функция max(a,y), которая возвращает большее из чисел.`);
-function  funMax(a, y){
+function  maxValue(a, y){
     if (a > y){return a;}
     return y;
 }
-console.log(`Максимальное число: ${funMax(3, 5)}`);
+console.log(`Максимальное число: ${maxValue(3, 5)}`);
 console.log(`Способ №2. Тернарный оператор.`);
-function  funMax2(a, y){
+function  maxValue2(a, y){
     return (a > y) ? a : y;
 }
-console.log(`Максимальное число: ${funMax2(3, 5)}`);
+console.log(`Максимальное число: ${maxValue2(3, 5)}`);
 
 console.log('\n');
 console.log('Замена элементов массива.');
 let newMas = [];
+const lowLimit = 0;
+const highLimit = 100;
 for(let i = 0; i < 10; i++){
-    newMas.push(Math.floor(Math.random() * (101) + Math.ceil(0)));
+    newMas.push(Math.floor(Math.random() * (highLimit + 1) + Math.ceil(lowLimit)));
 }
 console.log(`Массив из 10-и случайных чисел от 0 до 100:`)
 console.log(newMas);
-function fooZero(newArray){
+function funZero(newArray){
     let zeroMas = [];
-    for(let i of newArray){
-        if(i % 10 === 0){
-        i = i.toString();
+    for(let indexArray of newArray){
+        if(indexArray.toString().includes("0")){
+            indexArray = indexArray.toString();
         let reg = `0`;
-        while (i.includes("0")){
-            i = i.replace(reg, "zero");
+        while (indexArray.includes("0")){
+            indexArray = indexArray.replace(reg, "zero");
         }
     }
-        zeroMas.push(i);
+        zeroMas.push(indexArray);
     }
     return zeroMas;
 }
 console.log(`Замена нулей на 'zero' при помощи функции:`)
-console.log(fooZero(newMas));
+console.log(funZero(newMas));
 
