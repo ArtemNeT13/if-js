@@ -114,15 +114,13 @@ console.log(`Массив из 10-и случайных чисел от 0 до 1
 console.log(newMas);
 function funZero(newArray){
     let zeroMas = [];
-    for(let indexArray of newArray){
-        if(indexArray.toString().includes("0")){
-            indexArray = indexArray.toString();
+    for(let elementArray of newArray){
+        if(elementArray.toString().includes("0")){
+            elementArray = elementArray.toString();
         let reg = `0`;
-        while (indexArray.includes("0")){
-            indexArray = indexArray.replace(reg, "zero");
-        }
+        elementArray = elementArray.replaceAll(reg, "zero");
     }
-        zeroMas.push(indexArray);
+        zeroMas.push(elementArray);
     }
     return zeroMas;
 }
