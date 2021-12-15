@@ -1,0 +1,24 @@
+{
+  "name": "if",
+  "version": "1.0.0",
+  "description": "test app",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtemNeT13/if-js.git"
+  },
+  "author": "Artem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArtemNeT13/if-js/issues"
+  },
+  "homepage": "https://github.com/ArtemNeT13/if-js#readme",
+  "devDependencies": {
+    "eslint": "^8.4.1",
+    "eslint-plugin-react": "^7.27.1",
+    "jest": "^27.4.5"
+  }
+}
