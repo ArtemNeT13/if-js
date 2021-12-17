@@ -242,21 +242,23 @@ const dataBase = [
     {
         country: 'Germany',
         city: 'Berlin',
-        hotel: 'Hotel Rehberge Berlin Mitte',},
+        hotel: 'Hotel Rehberge Berlin Mitte',
+    },
 ];
 
 function search(select, array) {
     let matches = [];
-    for (let i = array.length; i--;) {
-        for (key in array[i]) {
-            if (array[i].hasOwnProperty(key) && array[i][key].indexOf(select) > -1) {
-                matches.push(Object.values(array[i]).join(' '));
+    const foundWord = select.toLowerCase();
+    for (let hotelData of array) {
+        for (let value of Object.values(hotelData)) {
+            if (value.toLowerCase().includes(foundWord)) {
+                matches.push(Object.values(hotelData).join(' '));
             }
         }
     }
-    return matches.join("\n").toString();
+    return matches;
 }
-console.log(search('Hotel', dataBase));
+console.log(search("Hotel", dataBase));
 
 
 
