@@ -131,15 +131,15 @@
 // Напишите функцию sum, которая возвращает сумму чисел следующим образом:
 // console.log(sum(5)(2)); // 7
 
-const curry = fun => valueA => valueB => (fun(valueA, valueB));
-// использование
-const funSum = (valueA, valueB) => valueA + valueB;
-let sum = curry(funSum);
-let num1 = 5;
-let num2 = 8;
-console.log(sum(num1)(num2));
-
-module.exports = funSum;
+// const curry = fun => valueA => valueB => (fun(valueA, valueB));
+// // использование
+// const funSum = (valueA, valueB) => valueA + valueB;
+// let sum = curry(funSum);
+// let num1 = 5;
+// let num2 = 8;
+// console.log(sum(num1)(num2));
+//
+// module.exports = funSum;
 
 // //Покрасьте абзацы по клику.
 // const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
@@ -187,4 +187,78 @@ module.exports = funSum;
 //     }
 // }
 // newText3.addEventListener('click', changeColor3());
+
+                                                    // lesson-5
+
+//Преобразование формата даты:
+let data = '2020-11-26';
+console.log(`Первоначальный вид даты: ${data}`);
+
+function transformData(startData){
+    let newData = [];
+    let arrayData = data.split(/(-)/);
+    for(let i = arrayData.length - 1; i >= 0; i--){
+        if(arrayData[i] === '-'){
+            newData.push('.');
+        } else{
+            newData.push(arrayData[i]);
+        }
+    }
+    return newData.join('');
+}
+console.log(`Преобразоавнный вид даты: ${transformData(data)}`);
+console.log(`\n`)
+//Поиск объектов размещения:
+console.log(`Результат поиска:`);
+const dataBase = [
+    {
+        country: 'Russia',
+        city: 'Saint Petersburg',
+        hotel: 'Hotel Leopold',},
+    {
+        country: 'Spain',
+        city: 'Santa Cruz de Tenerife',
+        hotel: 'Apartment Sunshine',},
+    {
+        country: 'Slowakia',
+        city: 'Vysokie Tatry',
+        hotel: 'Villa Kunerad',},
+    {
+        country: 'Germany',
+        city: 'Berlin',
+        hotel: 'Hostel Friendship',},
+    {
+        country: 'Indonesia',
+        city: 'Bali',
+        hotel: 'Ubud Bali Resort&SPA',},
+    {
+        country: 'Netherlands',
+        city: 'Rotterdam',
+        hotel: 'King Kong Hostel',},
+    {
+        country: 'Marocco',
+        city: 'Ourika',
+        hotel: 'Rokoko Hotel',},
+    {
+        country: 'Germany',
+        city: 'Berlin',
+        hotel: 'Hotel Rehberge Berlin Mitte',
+    },
+];
+
+function search(select, array) {
+    let matches = [];
+    const foundWord = select.toLowerCase();
+    for (let hotelData of array) {
+        for (let value of Object.values(hotelData)) {
+            if (value.toLowerCase().includes(foundWord)) {
+                matches.push(Object.values(hotelData).join(' '));
+            }
+        }
+    }
+    return matches;
+}
+console.log(search("Hotel", dataBase));
+
+
 
