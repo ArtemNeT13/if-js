@@ -672,9 +672,10 @@ const deepEqual = (object1, object2) => {
         return false;
     }
 
-    for (let i = 0; i < props1.length; i += 1) {
+    for (let i = 0; i < props1.length; i ++) {
         const prop = props1[i];
-        const bothAreObjects = typeof(object1[prop]) === 'object' && typeof(object2[prop]) === 'object';
+        const bothAreObjects =
+            typeof(object1[prop]) === 'object' && typeof(object2[prop]) === 'object';
 
         if ((!bothAreObjects && (object1[prop] !== object2[prop]))
             || (bothAreObjects && !deepEqual(object1[prop], object2[prop]))) {
@@ -683,5 +684,95 @@ const deepEqual = (object1, object2) => {
     }
     return true;
 }
-console.log(deepEqual(obj1, obj2)); // true
-console.log(deepEqual(obj1, obj3)); // false
+console.log(deepEqual(obj1, obj2));
+console.log(deepEqual(obj1, obj3));
+
+
+                                                   // LESSON-8
+//пузырьковая сортировка
+const arr = [11,82,23,6,48,12,13,55,45,39,76,88,37];
+console.log(arr);
+function sort (a) {
+    for (let value = 0; value < a.length; value += 1){
+        for(let i = 0; i < a.length; i += 1){
+            if(a[i] > a[i + 1]){
+                let j = a[i];
+                a[i] = a[i + 1];
+                a[i + 1] = j;
+            }
+        }
+    }
+    return a;
+}
+console.log(sort(arr));
+
+
+class User {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastNmae = lastName;
+    }
+    getFullName () {
+        return `${this.firstName} ${this.lastNmae}`;
+    }
+}
+
+class Student extends User{
+    constructor({firstName, lastName, admissionYear, courseName}){
+        super (firstName, lastName);
+        this.admissionYear = admissionYear;
+        this.courseName = courseName;
+    }
+    get course(){
+        let xYear = new  Date().getFullYear();
+        return xYear - this.admissionYear;
+    }
+}
+
+class Students {
+    constructor(students) {
+        this.students = students;
+    }
+
+    sortByCourse = () => this.students.sort((a, b) => a.course - b.course);
+
+    getInfo() {
+        return this.students.forEach((student) => {
+            console.log(
+                    `${student.getFullName()} - ${student.courseName}, ${student.course} курс`
+            );
+        });
+    }
+}
+
+const studentsData = [
+    {
+        firstName: 'Василий',
+        lastName: 'Петров',
+        admissionYear: 2019,
+        courseName: 'Java',
+    },
+    {
+        firstName: 'Иван',
+        lastName: 'Иванов',
+        admissionYear: 2018,
+        courseName: 'JavaScript',
+    },
+    {
+        firstName: 'Александр',
+        lastName: 'Федоров',
+        admissionYear: 2017,
+        courseName: 'Python',
+    },
+    {
+        firstName: 'Николай',
+        lastName: 'Петров',
+        admissionYear: 2019,
+        courseName: 'Android',
+    }
+];
+
+const studentInstances = studentsData.map((student) => new Student(student));
+const students = new Students(studentInstances);
+students.sortByCourse();
+students.getInfo();
