@@ -790,7 +790,7 @@ const colors = {
     },
 
     next(){
-        if (this.current === undefined) {    //почему this.current не определено
+        if (this.current === undefined) {
             this.current = 0;
         }
 
