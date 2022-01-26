@@ -695,12 +695,12 @@
 // const arr = [11,82,23,6,48,12,13,55,45,39,76,88,37];
 // console.log(arr);
 // function sort (a) {
-//     for (let value = 0; value < a.length; value += 1){
-//         for(let i = 0; i < a.length; i += 1){
-//             if(a[i] > a[i + 1]){
-//                 let j = a[i];
-//                 a[i] = a[i + 1];
-//                 a[i + 1] = j;
+//     for (let i = 0; i < a.length - 1; i++){
+//         for(let j = 0; j < a.length - 1 - i; j++){
+//             if(a[j] > a[j + 1]){
+//                 let tmp = a[j];
+//                 a[j] = a[j + 1];
+//                 a[j + 1] = tmp;
 //             }
 //         }
 //     }
@@ -736,60 +736,11 @@
 //         this.students = students;
 //     }
 //
-//     sortByCourse = () => this.students.sort((a, b) => a.course - b.course);
-//
 //     getInfo() {
+//         this.students.sort((a, b) => a.course - b.course);
 //         return this.students.forEach((student) => {
 //             console.log(
 //                     `${student.getFullName()} - ${student.courseName}, ${student.course} курс`
-//             );
-//         });
-//     }
-// }
-//
-//example from lesson
-// class User {
-//     constructor(firstName, lastName) {
-//         this.firstName = firstName;
-//         this.lastName = lastName;
-//     }
-//     // get fullName () {
-//     //     return `${this.firstName} ${this.lastName}`;
-//     // }
-//
-//     getFullName () {
-//         return `${this.firstName} ${this.lastName}`;
-//     }
-// }
-//
-// class Student extends User{
-//     constructor({firstName, lastName, admissionYear, courseName}){
-//         super (firstName, lastName);
-//
-//         this.admissionYear = admissionYear;
-//         this.courseName = courseName;
-//     }
-//     // get fullName (){
-//     //     return super.fullName;
-//     // }
-//     get course(){
-//         let xYear = new  Date().getFullYear();
-//         return xYear - this.admissionYear;
-//     }
-// }
-//
-// class Students {
-//     constructor(students) {
-//         this.students = students;
-//     }
-//
-//     sortByCourse = () => this.students.sort((a, b) => a.course - b.course);
-//
-//     getInfo() {
-//         return this.students.forEach((student) => {
-//             console.log(
-//                 // `${student.fullName} - ${student.courseName}, ${student.course} курс`
-//                 `${student.getFullName()} - ${student.courseName}, ${student.course} курс`
 //             );
 //         });
 //     }
@@ -824,46 +775,45 @@
 //
 // const studentInstances = studentsData.map((student) => new Student(student));
 // const students = new Students(studentInstances);
-// students.sortByCourse();
 // students.getInfo();
 
 //                                                  LESSON-9
 
-// let newText3 = document.getElementById("text3");
+let newText1 = document.getElementById("text1");
+let newText2 = document.getElementById("text2");
+let newText3 = document.getElementById("text3");
 
 const colors = {
     data: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
     [Symbol.iterator]() {
-        const id = Object.keys(this);
-        const limit = id.length;
-        const $this = this;
+        return this.data;
+    },
 
-        let counter = 0;
+    next(){
+        if (this.current === undefined) {    //почему this.current не определено
+            this.current = 0;
+        }
 
-       return{
-           next(){
-                if(counter < limit){
-                    return{
-                        done: false,
-                        value: $this[id[counter++]]
-                    }
-                }
-                return {
-                    done: true
-                }
-           }
-       }
-    }
-}
+        if(this.current < this.data.length){
+            return {done: false, value: this.data[this.current++]};
+        }
 
-for (let value of colors){
-    console.log(value)
-    // как вставить нужный цвет в функцию?
-    // const changeStyle = id => event => {
-    //     event.target.style.color = colors.next(id).value;
-    // };
-}
+        if(this.current === this.data.length){
+            this.current = 0
+            return this.next();
+        }
+        return {done: true};
 
+    },
+};
+
+const changeStyle  = colors => event => {
+    event.target.style.color = colors.next().value;
+};
+
+newText1.addEventListener('click', changeStyle(colors));
+newText2.addEventListener('click', changeStyle(colors));
+newText3.addEventListener('click', changeStyle(colors));
 
 
 
@@ -873,20 +823,3 @@ for (let value of colors){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// newText3.addEventListener('click', colors[Symbol.iterator].changeStyle());
-// console.log(colors[Symbol.iterator]);
-// const changeStyle = id => event => {
-//     event.target.style.color = colors.next(id).value;
-// };
