@@ -614,6 +614,11 @@ footer p{
     font-size: 14px;
 }
 
+
+                                /*LESSON-10*/
+
+
+
 @media screen and (min-width: 1240px){
     .col-xl-1  {width: calc(100% / var(--column-count) * 1)}
     .col-xl-2  {width: calc(100% / var(--column-count) * 2)}
