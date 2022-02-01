@@ -51,22 +51,38 @@ const data = [
     },
 ];
 
-// newDiv.className = 'hotel-foto col-xl-3 col-sm-6';
-// newDiv.innerHTML = "<div>Hi there and greetings!</div>";
 
-data.forEach(function (data){
+// 1. выбрать первые 4 элемента +
+// 2. повторить HTML как в index.html
+// 3. переписать логику используя reduce, место forEach
 
-    const newDiv = document.createElement("div");
+const dataNew = data.slice(0, 4)
+// let name = ''
+// dataNew.forEach(function (hotel){
+//
+//     name += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
+//                 <div class="hotel-img col-sm-12">
+//                    <img src="${hotel.imageUrl}" alt="picture">
+//                 </div>
+//                 <p>${hotel.name}</p>
+//                 <p><span>${hotel.city}, ${hotel.country}</span></p>
+//             </div>`
+// })
+// const currentDiv = document.getElementById("homeGuests")
+// currentDiv.innerHTML = name
 
-    newDiv.className = 'hotel-foto col-xl-3 col-sm-6';
-    const newContent = document.createTextNode(data.name);
-    newDiv.appendChild(newContent);
+let hotelOffer = ''
+let favoriteHotels = dataNew.reduce((prev, hotel) => {
+    return hotelOffer += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
+                <div class="hotel-img col-sm-12">
+                   <img src="${hotel.imageUrl}" alt="picture">
+                </div>
+                <p>${hotel.name}</p>
+                <p><span>${hotel.city}, ${hotel.country}</span></p>
+            </div>`
+},'')
 
-
-    const currentDiv = document.getElementById("homeGuests");
-    document.body.insertBefore(newDiv, currentDiv);
-
-    console.log(newDiv)
-})
-
+const currentDiv = document.getElementById("homeGuests")
+currentDiv.innerHTML = favoriteHotels
+console.log(favoriteHotels)
 

@@ -327,6 +327,7 @@ section{
 }
 
 .homes-guests{
+    position: relative;
     background: #EAF0F9;
     display: flex;
     flex-wrap: wrap;
@@ -334,6 +335,7 @@ section{
     order: 2;
 }
 .offer-hotel{
+
     display: flex;
     justify-content: space-between;
     margin-top: 105px;
@@ -347,6 +349,12 @@ section{
 }
 .hotel-img img{
     width: 100%;
+}
+.arrow-right-hotel{
+    position: absolute;
+    top: 51%;
+    right: 105px;
+    transform: translate(50%, -50%);
 }
 .arrow-right{
     position: absolute;
