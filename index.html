@@ -2,13 +2,359 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FE-7-JS-ArtemErmachonak</title>
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+
+ </head>
+
 <body>
-<h1>Hello world!</h1>
-<p id="text1" onclick = "changeColor(colors)">Text 1. Lorem ipsum dolor sit amet.</p>
-<p id="text2">Text 2. Lorem ipsum dolor sit amet.</p>
-<p id="text3" >Text 3. Lorem ipsum dolor sit amet.</p>
-</body>
+<div class="wrapper">
+    <header class="header">
+        <div class="header-content">
+            <nav class="header-logo col-xl-12 col-sm-12">
+                <div>
+                    <img src="./images/logo.svg" alt="logo">
+                </div>
+                <div class="header-menu">
+
+                    <div class="header-links">
+                        <div class="underline-stays">
+                            <p>Stays</p>
+                        </div>
+                        <div class="underline-attractions">
+                            <p>Attractions</p>
+                        </div>
+                    </div>
+
+                    <div class="header-img">
+                        <div class="image-sun">
+                            <img src="./images/Night.svg" alt="night">
+                        </div>
+                        <img src="./images/AccountHeader.svg" alt="account">
+                        <div class="humburger-menu">
+                            <div class="humburger"></div>
+                            <div class="humburger"></div>
+                            <div class="humburger"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </nav>
+            <div class="font-bold col-xl-12 col-sm-12">
+                <h1>Discover stays<br>
+                    to live, work or just relax
+                </h1>
+            </div>
+            <div class="form-search col-sm-12">
+                <form class="header-search col-xl-12 col-sm-12">
+                    <div class="search-block col-sm-12">
+                        <div class="label-block">
+                            <img src="./images/Vector.svg" alt="vector">
+                            <label>Your destination or hotel name</label>
+                        </div>
+                        <div class="input-block">
+                            <input type="text" name="search-input" placeholder="New York">
+                        </div>
+                    </div>
+                    <div class="search-data col-sm-12">
+                        <div class="data-label">
+                            <label>Check-in — Check-out</label>
+                        </div>
+
+                        <div class="data-label-2">
+                            <div class="col-sm-6">Check-in data</div>
+                            <div class="col-sm-6">Check-out data</div>
+                        </div>
+
+                        <div class="data-block col-sm-12">
+                            <input class="col-sm-6" type="text" name="data-in" placeholder="Tue 15 Sept" >
+                            <span>&nbsp—&nbsp</span>
+                            <input class="col-sm-6" type="text" name="data-out" placeholder="Sat 19 Sept" >
+                        </div>
+                    </div>
+                    <div class="filter-block col-sm-12">
+                        <div class="filter-label">
+                            <label>2 Adults — 0 Children — 1 Room</label>
+                        </div>
+                        <div class="filter-input">
+                            <input type="text" name="filter-abults" placeholder="2 Adults">
+                            <span>&nbsp—&nbsp</span>
+                            <input type="text" name="filter-children" class="filter-children" placeholder="0 Children">
+                            <span>&nbsp—&nbsp</span>
+                            <input type="text" name="filter-room" placeholder="1 Room">
+                        </div>
+                    </div>
+                    <div class="filter-input-2 col-sm-12">
+                        <div class="col-sm-6">
+                            <span>Adults<p>2</p></span>
+                        </div>
+                        <hr>
+                        <div class="col-sm-6">
+                            <span>Children<p>0</p></span>
+                        </div>
+                        <hr>
+                        <div class="col-sm-6">
+                            <span>Rooms<p>1</p></span>
+                        </div>
+                    </div>
+                    <div class="header-button col-sm-12">
+                        <button class="button-blue ">Search</button>
+                    </div>
+                </form>
+            </div>
+            <div class="header-apps col-xl-12">
+                <img src="./images/google-play-badge.png" alt="google play badge">
+                <img src="./images/App_Store_Badge.png" alt="app store badge">
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="offer col-xl-12">
+            <div class="section-title section-title-underline col-xl-12">
+                <h2>What do we offer</h2>
+
+            </div>
+            <div class="section-content offer_icons col-xl-12">
+                <div class="icon col-xl-3 col-sm-12">
+                    <img src="./images/headsetMic.svg" alt="Support 24/7">
+                    <p>Support 24/7</p>
+                </div>
+                <div class="icon col-xl-3 col-sm-12">
+                    <img src="./images/communicate.svg" alt="Communicate directly">
+                    <p>Communicate directly</p>
+                </div>
+                <div class="icon col-xl-3 col-sm-12">
+                    <img src="./images/notebook.svg" alt="Book online">
+                    <p>Book online</p>
+                </div>
+                <div class="icon col-xl-3 col-sm-12">
+                    <img src="./images/reviews.svg" alt="Real guest reviews">
+                    <p>Real guest reviews</p>
+                </div>
+            </div>
+        </section>
+        <section class="homes-guests col-sm-12">
+            <div class="section-title col-xl-12 col-sm-12">
+                <h2>Homes guests loves</h2>
+            </div>
+
+
+            <div id="homeGuests" class="offer-hotel section-content col-xl-12">
+            </div>
+            <img class="arrow-right-hotel" src="images/arrowRight.png"
+                 alt="right arrow">
+
+
+        </section>
+        <section class="best-destinations col-sm-12">
+            <div class="section-title col-xl-12 col-sm-12">
+                <h2>The best destinations</h2>
+            </div>
+            <div class="section-content col-sm-12">
+                <div class="destinations-button col-sm-12">
+                    <button class="button-regions col-sm-4" name="button-regions">Regions</button>
+                    <button class="button-cities col-sm-4" name="button-cities">Cities</button>
+                    <button class="button-places col-sm-4" name="button-places"><p>Places of interest</p><span>Plases</span></button>
+                </div>
+                <div class="destination-foto col-xl-12 col-sm-12">
+                    <div class="foto col-xl-3 col-sm-6">
+                        <div class="destination-foto1">
+                            <button name="buttonBoockNow" class="button-blue">Book now</button>
+                            <img src="./images/Maldives.jpg" alt="foto Maldives">
+                        </div>
+                        <p>Maldives</p>
+                    </div>
+                    <div class="foto col-xl-3 col-sm-6">
+                        <img src="./images/Spain.jpg" alt="foto Spain">
+                        <p>Spain</p>
+                    </div>
+                    <div class="foto col-xl-3 foto-off">
+                        <img src="./images/Norway.jpg" alt="foto Norway">
+                        <p>Norway</p>
+                    </div>
+                    <div class="foto col-xl-3 foto-off">
+                        <img src="./images/Island.jpg" alt="foto Island">
+                        <p>Island</p>
+                    </div>
+
+                    <div class="arrow-down col-xl-12">
+                        <img src="images/arrowDown.png" alt="down arrow">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="sing-up section-content col-xl-12">
+            <div class="sing-up-user col-xl-6">
+                <div>
+                    <img class="foto-off" src="./images/user.png" alt="user">
+                    <img class="logo-triphouse" src="./images/logo-triphouse.svg" alt="logo trip house">
+                </div>
+                <div class="sing-up-booking">
+                    <p>Sign up and get 20% off your first booking</p><span>Sign up in the app and get 20% off your first booking</span>
+                    <button class="button-blue" name="sign-up"><p>Sign up</p><span>Install</span></button>
+                </div>
+            </div>
+            <div class="sing-up-close">
+                <img src="./images/close1.png" alt="close">
+            </div>
+        </section>
+        <section class="guests col-sm-12">
+            <div class="section-title col-xl-12 col-sm-12">
+                <h2 class="new-titel">Reviews</h2>
+                <h2>Guests reviews</h2>
+            </div>
+            <div class="section-content guests-reviews col-xl-12">
+                <div class="reviews col-xl-4">
+                    <div class="reviews-image col-xl-12 col-sm-12">
+                        <img src="./images/BaliIndonesia.jpg" alt="Bali Indonesia">
+                        <div class="reviews-price col-xl-12 foto-off"><p>From 250 USD</p></div>
+                    </div>
+                    <div class="reviews-content">
+                        <div class="reviews-hotel">
+                            <p class="font-bold">Ubud Bali Resort&SPA</p>
+                            <div class="reviews-score">
+                                <span>9,4</span>
+                            </div>
+                        </div>
+                        <div class="reviews-plase">
+                            <p class="plase-countru">Bali, Indonesia</p>
+                            <p class="plase-views">1324 reviews</p>
+                        </div>
+                        <div class="reviews-account">
+                            <img src="images/Account.png" alt="account image">
+                            <div class="account-user">
+                                <p class="user-name">Hanna Ivanova</p>
+                                <p class="user-countru">&#x1F1FA;&#x1F1E6; Ukraine</p>
+                            </div>
+                        </div>
+                        <div class="reviews-text">
+                            <p>
+                                Great location, really pleasant and clean rooms,
+                                but the thing that makes this such a good place
+                                to stay are the staff. All of the people are
+                                incredibly helpful and generous with their time
+                                and advice.
+                            </p>
+                        </div>
+                        <div class="reviews-navigation">
+                            <img src="./images/navigation.svg" alt="rewiews navigation">
+                        </div>
+                    </div>
+                </div>
+                <div class="reviews col-xl-4 foto-off">
+                    <div class="reviews-image col-xl-12">
+                        <img src="./images/RotterdamNetherlands.jpg" alt="Rotterdam, Netherlands">
+                        <div class="reviews-price col-xl-12"><p>From 40 USD</p></div>
+                    </div>
+                    <div class="reviews-content">
+                        <div class="reviews-hotel">
+                            <p class="font-bold">King Kong Hostel</p>
+                            <div class="reviews-score">
+                                <span>8,9</span>
+                            </div>
+                        </div>
+                        <div class="reviews-plase">
+                            <p class="plase-countru">Rotterdam, Netherlands</p>
+                            <p class="plase-views">2016 reviews</p>
+                        </div>
+                        <div class="reviews-account">
+                            <img src="images/Account.png" alt="account image">
+                            <div class="account-user">
+                                <p class="user-name">Adam Smith</p>
+                                <p class="user-countru">&#127482;&#127474; USA</p>
+                            </div>
+                        </div>
+                        <div class="reviews-text">
+                            <p>
+                                I've been in this hostel for a month and here is the best hostel of all
+                                Excellent management of excellent and ethical staff and bedrooms Bathrooms are always clean and excellent
+                                Most importantly, those who work here are kind and good-natured.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reviews col-xl-4 foto-off">
+                    <div class="reviews-image col-xl-12">
+                        <img src="./images/OurikaMarocco.jpg" alt="Ourika Marocco">
+                        <div class="reviews-price col-xl-12"><p>From 100 USD</p></div>
+                        <div class="arrow-right">
+                            <img src="images/arrowRight.png" alt="right arrow">
+                        </div>
+                    </div>
+                    <div class="reviews-content">
+                        <div class="reviews-hotel">
+                            <p class="font-bold">Rokoko Hotel</p>
+                            <div class="reviews-score">
+                                <span>9,1</span>
+                            </div>
+                        </div>
+                        <div class="reviews-plase">
+                            <p class="plase-countru">Ourika, Marocco</p>
+                            <p class="plase-views">815 reviews</p>
+                        </div>
+                        <div class="reviews-account">
+                            <img src="images/Account.png" alt="account image">
+                            <div class="account-user">
+                                <p class="user-name">Anika Messer</p>
+                                <p class="user-countru">&#127465;&#127466; Germany</p>
+                            </div>
+                        </div>
+                        <div class="reviews-text">
+                            <p>
+                                Efficient, friendly, professional, and appropriately attentive.
+                                Great hotel in a great location. Easy access to all the surrounding
+                                historical sites. Staff is fantastic.
+                                Will definitely stay at this location during my next stay in Marocco.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer col-xl-12 col-sm-12">
+            <div class="footer-logo col-sm-12">
+                <img src="./images/footer-logo.svg" alt="logo">
+            </div>
+            <div class="footer-content col-xl-12">
+                <div class="col-xl-4">
+                    <span class="font-bold"><a href="./">About</a></span>
+                    <ul>
+                        <li><a href="./">How Triphouse works</a></li>
+                        <li><a href="./">Careers</a></li>
+                        <li><a href="./">Privacy</a></li>
+                        <li><a href="./">Terms</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-4">
+                    <span class="font-bold"><a href="./">Property types</a></span>
+                    <ul>
+                        <li><a href="./">Guest houses</a></li>
+                        <li><a href="./">Hotels</a></li>
+                        <li><a href="./">Apartments</a></li>
+                        <li><a href="./">Villas</a></li>
+                        <li><a href="./">Holiday homes</a></li>
+                        <li><a href="./">Hostels</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-4">
+                    <span class="font-bold"><a href="./">Support</a></span>
+                    <ul>
+                        <li><a href="./">Contact Customer Service</a></li>
+                        <li><a href="./">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-12 col-sm-12">
+                <p>© 2020 Triphouse, Inc. All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+</div>
 <script src="main.js"></script>
+</body>
 </html>
