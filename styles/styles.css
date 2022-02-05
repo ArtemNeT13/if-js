@@ -217,10 +217,14 @@ h2{
     align-items: center;
     justify-content: center;
 }
+.filter-block:hover .filter-input-parameters{
+    display: block;
+}
 
 .filter-block:hover .filter-label{
     display: none;
 }
+
 .filter-label{
     width: 314px;
     color: #383838;
@@ -253,6 +257,72 @@ h2{
     margin-left: -3px;
     border-radius: 8px;
     border: 3px solid #F5BD41;
+}
+
+
+
+.filter-input-parameters{
+    display: none;
+    width: 259px;
+    height: 158px;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    border-radius: 8px;
+}
+
+.filter-values{
+    display: block;
+    padding-top: 10px;
+}
+.filter-values-members{
+    display: flex;
+    height: 33.33%;
+    margin: 12px 22px;
+    align-items: center;
+    justify-content: space-between;
+}
+.filter-values input{
+    width: 48px;
+}
+.filter-values p{
+    font-weight: 400;
+    font-size: 16px;
+    color: #333333;
+    width: 50%;
+}
+.filter-values-members div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.filter-values-counter {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border: solid #3077C6 1px;
+    color: #3077C6;
+}
+
+.parameters-children-age{
+    width: 259px;
+    min-height: 98px;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+}
+.parameters-children-age p{
+    font-weight: 400;
+    font-size: 12px;
+    color: #333333;
+    padding: 6px 22px 12px 19px;
+}
+.parameters-children-age select{
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 19px;
 }
 .filter-block span{
     color: #383838;
