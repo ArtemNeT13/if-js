@@ -308,10 +308,14 @@ h2{
 }
 
 .parameters-children-age{
+    display: none;
+    padding-bottom: 18px;
     width: 259px;
     min-height: 98px;
     border-radius: 8px;
     background-color: #FFFFFF;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 .parameters-children-age p{
     font-weight: 400;
@@ -320,9 +324,14 @@ h2{
     padding: 6px 22px 12px 19px;
 }
 .parameters-children-age select{
+    width: 99px;
+    height: 30px;
+    padding-left: 3px;
+    margin: 4px 4px 4px 19px;
     font-size: 12px;
     font-weight: 400;
-    margin-left: 19px;
+    border-color: #3077C6;
+
 }
 .filter-block span{
     color: #383838;

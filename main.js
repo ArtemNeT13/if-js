@@ -79,111 +79,118 @@ let favoriteHotels = dataNew.reduce((prev, hotel) => {
 },'')
 const currentDiv = document.getElementById("homeGuests")
 currentDiv.innerHTML = favoriteHotels
-console.log(favoriteHotels)
-
 
 
 //          LESSON-11
-
-
-
-
-
-
+const maxAdults = 30;
 let lableValue = document.getElementById("lable_value")
-
 let adultsValue = document.getElementById("adults_value");
 let adultsVal = parseFloat(adultsValue.value);
-let adultsColor = document.getElementById("counter-adults__minus");
+let adultsColorMinus = document.getElementById("counter-adults__minus");
+let adultsColorPlus = document.getElementById("counter-adults__plus");
 let adultsInput = document.getElementById("filter-input__adults");
 document.getElementById("counter-adults__plus").onclick = function() {
-    if (adultsVal < 30) {
+    if (adultsVal < maxAdults) {
         adultsValue.value = ++adultsVal;
-        adultsColor.style.color = "#3077C6";
-        adultsColor.style.borderColor = "#3077C6";
+        adultsColorMinus.style.color = "#3077C6";
+        adultsColorMinus.style.borderColor = "#3077C6";
+    }
+    if (adultsVal === maxAdults){
+        adultsColorPlus.style.color = "#CECECE";
+        adultsColorPlus.style.borderColor = "#CECECE";
     }
     adultsInput.value = `${adultsVal} Adults`;
     lableValue.innerHTML  = `${adultsVal} Adults — ${childrenVal} Children — ${roomsVal} Room`;
 }
 document.getElementById("counter-adults__minus").onclick = function() {
+        adultsColorPlus.style.color = "#3077C6";
+        adultsColorPlus.style.borderColor = "#3077C6";
+    if (adultsVal > 0){
+        adultsValue.value = --adultsVal;
+    }
     if(adultsVal === 0){
-        adultsColor.style.color = "#CECECE";
-        adultsColor.style.borderColor = "#CECECE";
-    }else{
-        if (adultsVal > 0){
-            adultsValue.value = --adultsVal;
-        }
+        adultsColorMinus.style.color = "#CECECE";
+        adultsColorMinus.style.borderColor = "#CECECE";
     }
     adultsInput.value = `${adultsVal} Rooms`;
     lableValue.innerHTML  = `${adultsVal} Adults — ${childrenVal} Children — ${roomsVal} Room`;
 }
 
-
-
 let childrenValue = document.getElementById("children_value");
 let childrenVal = parseFloat(childrenValue.value);
-let childrenColor = document.getElementById("counter-children__minus");
+let childrenColorMinus = document.getElementById("counter-children__minus");
+let childrenColorPlus = document.getElementById("counter-children__plus");
 let childrenInput = document.getElementById("filter-input__children");
-document.getElementById("counter-children__plus").onclick = function() {
-    if (childrenVal < 10) {
-        childrenValue.value = ++childrenVal;
-        childrenColor.style.color = "#3077C6";
-        childrenColor.style.borderColor = "#3077C6";
+let selectAge = document.getElementById("children_select");
+const maxAge = 18;
+const maxChildrens = 10;
+document.getElementById("counter-children__plus").onclick = function () {
+    selectAge.style.display = "flex";
+    const selectAgeChild = document.createElement('select')
+    for (let year = 0; year < maxAge; year++){
+        selectAgeChild.innerHTML += `<option>${year} years old</option>`
     }
-    childrenInput.value = `${childrenVal} Children`;
-    lableValue.innerHTML  = `${adultsVal} Adults — ${childrenVal} Children — ${roomsVal} Room`;
-}
-document.getElementById("counter-children__minus").onclick = function() {
-    if(childrenVal === 0){
-        childrenColor.style.color = "#CECECE";
-        childrenColor.style.borderColor = "#CECECE";
-    }else{
-        if (childrenVal > 0){
-            childrenValue.value = --childrenVal;
-        }
+    if (childrenVal < maxChildrens) {
+        childrenValue.value = ++childrenVal;
+        childrenColorMinus.style.color = "#3077C6";
+        childrenColorMinus.style.borderColor = "#3077C6";
+        selectAge.appendChild(selectAgeChild).innerHTML
+    }
+    if (childrenVal === maxChildrens){
+        childrenColorPlus.style.color = "#CECECE";
+        childrenColorPlus.style.borderColor = "#CECECE";
     }
     childrenInput.value = `${childrenVal} Children`;
     lableValue.innerHTML  = `${adultsVal} Adults — ${childrenVal} Children — ${roomsVal} Room`;
 }
 
+document.getElementById("counter-children__minus").onclick = function() {
+    childrenColorPlus.style.color = "#3077C6";
+    childrenColorPlus.style.borderColor = "#3077C6";
+    if (childrenVal > 0){
+        childrenValue.value = --childrenVal;
+        let removeChildSelector = selectAge.lastChild;
+        selectAge.removeChild(removeChildSelector);
+    }
+    if(childrenVal === 0){
+        selectAge.style.display = "none";
+        childrenColorMinus.style.color = "#CECECE";
+        childrenColorMinus.style.borderColor = "#CECECE";
+    }
+    childrenInput.value = `${childrenVal} Children`;
+    lableValue.innerHTML  = `${adultsVal} Adults — ${childrenVal} Children — ${roomsVal} Room`;
+}
 
 let roomsValue = document.getElementById("rooms_value");
 let roomsVal = parseFloat(roomsValue.value);
-let roomsColor = document.getElementById("counter-rooms__minus");
+let roomsColorMinus = document.getElementById("counter-rooms__minus");
+let roomsColorPlus = document.getElementById("counter-rooms__plus");
 let roomsInput = document.getElementById("filter-input__rooms");
+const maxRooms = 30;
 document.getElementById("counter-rooms__plus").onclick = function() {
-    if (roomsVal < 30) {
+    if (roomsVal < maxRooms) {
         roomsValue.value = ++roomsVal;
-        roomsColor.style.color = "#3077C6";
-        roomsColor.style.borderColor = "#3077C6";
+        roomsColorMinus.style.color = "#3077C6";
+        roomsColorMinus.style.borderColor = "#3077C6";
+    }
+    if (roomsVal === maxRooms){
+        roomsColorPlus.style.color = "#CECECE";
+        roomsColorPlus.style.borderColor = "#CECECE";
     }
     roomsInput.value = `${roomsVal} Rooms`;
     lableValue.innerHTML  = `${adultsVal} Adults — ${childrenVal} Children — ${roomsVal} Room`;
 }
 document.getElementById("counter-rooms__minus").onclick = function() {
+    roomsColorPlus.style.color = "#3077C6";
+    roomsColorPlus.style.borderColor = "#3077C6";
+    if (roomsVal > 0){
+        roomsValue.value = --roomsVal;
+    }
     if(roomsVal === 0){
-        roomsColor.style.color = "#CECECE";
-        roomsColor.style.borderColor = "#CECECE";
-    }else{
-        if (roomsVal > 0){
-            roomsValue.value = --roomsVal;
-        }
+        roomsColorMinus.style.color = "#CECECE";
+        roomsColorMinus.style.borderColor = "#CECECE";
     }
     roomsInput.value = `${roomsVal} Rooms`;
     lableValue.innerHTML  = `${adultsVal} Adults — ${childrenVal} Children — ${roomsVal} Room`;
 }
-
-
-
-let selectAge = document.getElementById("children_select")
-if(childrenVal === 1){
-    selectAge.textContent  = "<p>What is the age of the child you’re travelling with?</p>";
-}
-
-
-
-
-
-
-
 
