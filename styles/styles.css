@@ -428,12 +428,12 @@ section{
 }
 .hotel-img img{
     width: 100%;
+    height: 300px;
 }
 .arrow-right-hotel{
     position: absolute;
-    top: 51%;
-    right: 105px;
-    transform: translate(50%, -50%);
+    top: 50%;
+    right: 0px;
 }
 .arrow-right{
     position: absolute;
