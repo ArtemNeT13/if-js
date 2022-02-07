@@ -298,15 +298,20 @@ h2{
     justify-content: center;
 }
 
-
-.filter-values-counter {
+.color-value-active{
     cursor: pointer;
     width: 30px;
     height: 30px;
-    border: solid #3077C6 1px;
     color: #3077C6;
+    border: solid #3077C6 1px;
 }
-
+.color-value-inactive{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: #CECECE;
+    border: solid #CECECE 1px;
+}
 .parameters-children-age{
     display: none;
     padding-bottom: 18px;
