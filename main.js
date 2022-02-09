@@ -175,18 +175,21 @@ btnSearchHeader.addEventListener('click', (event) => {
             if(Number(children) > 0 && Number(adults) === 0){
                alert('ВНИМАНИЕ! Дети не могут путешествовать без взрослых!')
             }else {
-                if(Number(children) === 1){
+                if(children == 1){
                     children = selectAge.querySelector("select").value
-                }else {
-                    for(selectAge.querySelector("select").value of selectAge.querySelectorAll("select"))
-                    console.log(selectAge.querySelector("select").value)
+                } else {
+                    // children = ''
+                    for(let value of selectAge.querySelectorAll("select")){
+                        children += `${selectAge.querySelector('select').value}, `
+                    }
+
                 }
             }
 
-
+            // console.log(selectAge.querySelectorAll("select").values())
             // adult = Number(adults)
             // console.log(typeof adult)
-            console.log(dataGet)
+            // console.log(dataGet)
             // console.log(search)
             // console.log(adults)
             console.log(children)
