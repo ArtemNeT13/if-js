@@ -144,10 +144,50 @@ const hotelsDataRequest = async () => {
         },'')
         const currentDiv = document.getElementById("homeGuests")
         currentDiv.innerHTML = favoriteHotels
-    } catch (err){
-        console.error(err)
     } finally {
 
     }
 }
 hotelsDataRequest();
+
+//                              LESSON-12.2
+
+const urlGet = 'https://fe-student-api.herokuapp.com/api/hotels'
+const btnSearchHeader = document.getElementById('btnSearchHeader')
+
+btnSearchHeader.addEventListener('click', () => {
+    fetch(urlGet)
+        .then((response) => response.json())
+        .then((dataGet) => {
+
+            // function ker (per){
+            //     per = Number(per)
+            //     return per
+            // }
+            const search = document.getElementById('searchHeader').value
+
+            const adults = document.getElementById('adults-value').value
+            const children = document.getElementById('children-value').value
+            const rooms = document.getElementById('rooms-value').value
+
+            if(Number(children) > 0 && Number(adults) === 0){
+               alert('ВНИМАНИЕ! Дети не могут путешествовать без взрослых!')
+            }
+
+
+            // adult = Number(adults)
+            // console.log(typeof adult)
+            console.log(dataGet)
+            // console.log(search)
+            // console.log(adults)
+            // console.log(children)
+            // console.log(rooms)
+        })
+
+})
+// search - строка,
+// adults - количество взрослых,
+// children - возраст детей перечислен через запятую,
+// rooms – количество номеров;
+
+
