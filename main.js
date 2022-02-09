@@ -107,7 +107,7 @@ document.getElementById("counter-rooms-minus").onclick = () => {
 }
 
 //                  LESSON-12
-let url = 'https://fe-student-api.herokuapp.com/api/hotels/popular'
+
 // fetch(url)
 //     .then((response) => {
 //         return response.json();
@@ -128,8 +128,9 @@ let url = 'https://fe-student-api.herokuapp.com/api/hotels/popular'
 //     });
 
 //способ 2
-const hotelsDataRequest = async () => {
+(hotelsDataRequest = async () => {
     try{
+        let url = 'https://fe-student-api.herokuapp.com/api/hotels/popular'
         const response = await fetch(url);
         const data = await response.json();
         const dataNew = data.slice(0, 4);
@@ -147,15 +148,16 @@ const hotelsDataRequest = async () => {
     } finally {
 
     }
-}
-hotelsDataRequest();
+})()
+
 
 //                              LESSON-12.2
 
 const urlGet = 'https://fe-student-api.herokuapp.com/api/hotels'
 const btnSearchHeader = document.getElementById('btnSearchHeader')
 
-btnSearchHeader.addEventListener('click', () => {
+btnSearchHeader.addEventListener('click', (event) => {
+    event.preventDefault()
     fetch(urlGet)
         .then((response) => response.json())
         .then((dataGet) => {
@@ -164,14 +166,21 @@ btnSearchHeader.addEventListener('click', () => {
             //     per = Number(per)
             //     return per
             // }
-            const search = document.getElementById('searchHeader').value
+            let search = document.getElementById('searchHeader').value
 
-            const adults = document.getElementById('adults-value').value
-            const children = document.getElementById('children-value').value
-            const rooms = document.getElementById('rooms-value').value
+            let adults = document.getElementById('adults-value').value
+            let children = document.getElementById('children-value').value
+            let rooms = document.getElementById('rooms-value').value
 
             if(Number(children) > 0 && Number(adults) === 0){
                alert('ВНИМАНИЕ! Дети не могут путешествовать без взрослых!')
+            }else {
+                if(Number(children) === 1){
+                    children = selectAge.querySelector("select").value
+                }else {
+                    for(selectAge.querySelector("select").value of selectAge.querySelectorAll("select"))
+                    console.log(selectAge.querySelector("select").value)
+                }
             }
 
 
@@ -180,7 +189,7 @@ btnSearchHeader.addEventListener('click', () => {
             console.log(dataGet)
             // console.log(search)
             // console.log(adults)
-            // console.log(children)
+            console.log(children)
             // console.log(rooms)
         })
 
