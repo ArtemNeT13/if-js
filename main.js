@@ -178,15 +178,17 @@ btnSearchHeader.addEventListener('click', (event) => {
                 if(children == 1){
                     children = selectAge.querySelector("select").value
                 } else {
-                    // children = ''
+                    children = ''
                     for(let value of selectAge.querySelectorAll("select")){
-                        children += `${selectAge.querySelector('select').value}, `
+                        children += `${value.value}, `
+
+                            // `${selectAge.querySelector('select').value}, `
                     }
 
                 }
             }
 
-            // console.log(selectAge.querySelectorAll("select").values())
+            // console.log(selectAge.querySelector("select").value)
             // adult = Number(adults)
             // console.log(typeof adult)
             // console.log(dataGet)
