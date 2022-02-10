@@ -45,7 +45,7 @@ document.getElementById("counter-children-plus").onclick = () => {
     selectAge.style.display = "flex";
     const selectAgeChild = document.createElement('select')
     for (let year = 0; year < maxAge; year++){
-        selectAgeChild.innerHTML += `<option>${year} years old</option>`
+        selectAgeChild.innerHTML += `<option value="${year}">${year} years old</option>`
     }
     if (childrenVal < maxChildrens) {
         childrenValue.value = ++childrenVal;
@@ -155,70 +155,34 @@ document.getElementById("counter-rooms-minus").onclick = () => {
 
 const urlGet = 'https://fe-student-api.herokuapp.com/api/hotels'
 const btnSearchHeader = document.getElementById('btnSearchHeader')
-
 btnSearchHeader.addEventListener('click', (event) => {
     event.preventDefault()
-    fetch(urlGet)
-        .then((response) => response.json())
-        .then((dataGet) => {
-            let search = document.getElementById('searchHeader').value
-            let adults = document.getElementById('adults-value').value
-            let children = document.getElementById('children-value').value
-            let rooms = document.getElementById('rooms-value').value
+    let search = document.getElementById('searchHeader').value
+    let adults = document.getElementById('adults-value').value
+    let children = document.getElementById('children-value').value
+    let rooms = document.getElementById('rooms-value').value
 
-            if(Number(children) > 0 && Number(adults) === 0){
-              return  alert('ВНИМАНИЕ! Дети не могут путешествовать без взрослых!')
-            }else {
-                if(children == 1) {
-                    children = selectAge.querySelector("select").value
-                }else{
-                    children = ''
-                    for(let value of selectAge.querySelectorAll("select")){
-                        children += `${value.value}, `
-                    }
+    let isValid = false;
 
-                }
-            }
-
-
-            const availableHotels = document.getElementById("availableHotels")
-            availableHotels.style.display = "flex";
-
-//1 way
-//             let dataGetNew = []
-//             for(let hotel of dataGet){
-//                 search = search.toLowerCase()
-//                 if(search === hotel.name.toLowerCase() ||
-//                     search === hotel.country.toLowerCase() ||
-//                     search === hotel.city.toLowerCase()){
-//                     dataGetNew.push(hotel);
-//                 }
-//             }
-//             let searchHotels = dataGetNew.reduce((prev, hotel) => {
-//                 return prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
-//                    <div class="hotel-img col-sm-12">
-//                       <img src="${hotel.imageUrl}" alt="picture">
-//                    </div>
-//                    <p>${hotel.name}</p>
-//                    <p><span>${hotel.city}, ${hotel.country}</span></p>
-//                    </div>`
-//                    }, '')
-//                 const searchDiv = document.getElementById("searchResult")
-//                 searchDiv.innerHTML = searchHotels
-//2 way
-
-let dataGetNew = [];
-    (function searchFun (select) {
-        search = search.toLowerCase();
-        for (let element of dataGet) {
-            for (let key of Object.values(element)) {
-               if (key.toLowerCase().includes(search)) {
-               dataGetNew.push(element);
+    if(Number(children) > 0 && Number(adults) === 0){
+        return  alert('ВНИМАНИЕ! Дети не могут путешествовать без взрослых!')
+    }else {
+        if(Number(children) === 1) {
+            children = selectAge.querySelector("select").value
+        }else{
+            children = ''
+            for(let value of selectAge.querySelectorAll("select")){
+                children += `${value.value},`
             }
         }
     }
-})()
-            console.log(dataGetNew)
+    fetch(`${urlGet}?search=${search}&adults=${adults}&children=${children}&rooms=${rooms}`)
+        .then((response) => response.json())
+        .then((dataGet) => {
+            const availableHotels = document.getElementById("availableHotels")
+            availableHotels.style.display = "flex";
+
+            const dataGetNew = dataGet.slice(0, 4).sort();
             let searchHotels = dataGetNew.reduce((prev, hotel) => {
                 return prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
                     <div class="hotel-img col-sm-12">
@@ -230,20 +194,6 @@ let dataGetNew = [];
             }, '')
             const searchDiv = document.getElementById("searchResult")
             searchDiv.innerHTML = searchHotels
-//
-
-
-
-
-
-            // console.log(selectAge.querySelector("select").value)
-            // adult = Number(adults)
-            // console.log(typeof search)
-            // console.log(dataGet)
-            console.log(search)
-            console.log(adults)
-            console.log(children)
-            console.log(rooms)
         })
 })
 
