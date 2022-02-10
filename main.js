@@ -161,47 +161,91 @@ btnSearchHeader.addEventListener('click', (event) => {
     fetch(urlGet)
         .then((response) => response.json())
         .then((dataGet) => {
-
-            // function ker (per){
-            //     per = Number(per)
-            //     return per
-            // }
             let search = document.getElementById('searchHeader').value
-
             let adults = document.getElementById('adults-value').value
             let children = document.getElementById('children-value').value
             let rooms = document.getElementById('rooms-value').value
 
             if(Number(children) > 0 && Number(adults) === 0){
-               alert('ВНИМАНИЕ! Дети не могут путешествовать без взрослых!')
+              return  alert('ВНИМАНИЕ! Дети не могут путешествовать без взрослых!')
             }else {
-                if(children == 1){
+                if(children == 1) {
                     children = selectAge.querySelector("select").value
-                } else {
+                }else{
                     children = ''
                     for(let value of selectAge.querySelectorAll("select")){
                         children += `${value.value}, `
-
-                            // `${selectAge.querySelector('select').value}, `
                     }
 
                 }
             }
 
+
+
+
+
+            const availableHotels = document.getElementById("availableHotels")
+            availableHotels.style.display = "flex";
+            // let dataGetNew = []
+            // for(let hotel of dataGet){
+            //     search = search.toLowerCase()
+            //     if(search === hotel.name.toLowerCase().includes(search) ||
+            //         search === hotel.country.toLowerCase() ||
+            //         search === hotel.city.toLowerCase().indexOf(search)){
+            //         dataGetNew.push(hotel);
+            //     }
+            // }
+//2 way
+            let dataGetNew2 = [];
+            (function searchFun (select) {
+                search = search.toLowerCase();
+                for (let element of dataGet) {
+                    for (let key of Object.values(element)) {
+                        if (key.toLowerCase().includes(search)) {
+                            dataGetNew2.push(element);
+            }
+        }
+    }
+    return dataGetNew2;
+})()
+            console.log(dataGetNew2)
+ // console.log(searchs2(search));
+            let searchHotels2 = dataGetNew2.reduce((prev, hotel) => {
+                return prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
+                    <div class="hotel-img col-sm-12">
+                       <img src="${hotel.imageUrl}" alt="picture">
+                    </div>
+                    <p>${hotel.name}</p>
+                    <p><span>${hotel.city}, ${hotel.country}</span></p>
+                    </div>`
+            }, '')
+            const searchDiv2 = document.getElementById("searchResult")
+            searchDiv2.innerHTML = searchHotels2
+//
+
+             // let searchHotels = dataGetNew2.reduce((prev, hotel) => {
+             //     return prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
+             //        <div class="hotel-img col-sm-12">
+             //           <img src="${hotel.imageUrl}" alt="picture">
+             //        </div>
+             //        <p>${hotel.name}</p>
+             //        <p><span>${hotel.city}, ${hotel.country}</span></p>
+             //        </div>`
+             //        }, '')
+             //     const searchDiv = document.getElementById("searchResult")
+             //     searchDiv.innerHTML = searchHotels
+
+
+
             // console.log(selectAge.querySelector("select").value)
             // adult = Number(adults)
-            // console.log(typeof adult)
+            // console.log(typeof search)
             // console.log(dataGet)
-            // console.log(search)
-            // console.log(adults)
+            console.log(search)
+            console.log(adults)
             console.log(children)
-            // console.log(rooms)
+            console.log(rooms)
         })
-
 })
-// search - строка,
-// adults - количество взрослых,
-// children - возраст детей перечислен через запятую,
-// rooms – количество номеров;
 
 
