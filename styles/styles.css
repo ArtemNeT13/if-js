@@ -432,6 +432,11 @@ section{
     margin-top: 105px;
     padding-bottom: 120px;
 }
+.search-hotel{
+    display: flex;
+    margin-top: 105px;
+    padding-bottom: 120px;
+}
 .hotel-foto{
     margin: 0 8px;
 }

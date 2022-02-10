@@ -181,36 +181,45 @@ btnSearchHeader.addEventListener('click', (event) => {
             }
 
 
-
-
-
             const availableHotels = document.getElementById("availableHotels")
             availableHotels.style.display = "flex";
-            // let dataGetNew = []
-            // for(let hotel of dataGet){
-            //     search = search.toLowerCase()
-            //     if(search === hotel.name.toLowerCase().includes(search) ||
-            //         search === hotel.country.toLowerCase() ||
-            //         search === hotel.city.toLowerCase().indexOf(search)){
-            //         dataGetNew.push(hotel);
-            //     }
-            // }
+
+//1 way
+//             let dataGetNew = []
+//             for(let hotel of dataGet){
+//                 search = search.toLowerCase()
+//                 if(search === hotel.name.toLowerCase() ||
+//                     search === hotel.country.toLowerCase() ||
+//                     search === hotel.city.toLowerCase()){
+//                     dataGetNew.push(hotel);
+//                 }
+//             }
+//             let searchHotels = dataGetNew.reduce((prev, hotel) => {
+//                 return prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
+//                    <div class="hotel-img col-sm-12">
+//                       <img src="${hotel.imageUrl}" alt="picture">
+//                    </div>
+//                    <p>${hotel.name}</p>
+//                    <p><span>${hotel.city}, ${hotel.country}</span></p>
+//                    </div>`
+//                    }, '')
+//                 const searchDiv = document.getElementById("searchResult")
+//                 searchDiv.innerHTML = searchHotels
 //2 way
-            let dataGetNew2 = [];
-            (function searchFun (select) {
-                search = search.toLowerCase();
-                for (let element of dataGet) {
-                    for (let key of Object.values(element)) {
-                        if (key.toLowerCase().includes(search)) {
-                            dataGetNew2.push(element);
+
+let dataGetNew = [];
+    (function searchFun (select) {
+        search = search.toLowerCase();
+        for (let element of dataGet) {
+            for (let key of Object.values(element)) {
+               if (key.toLowerCase().includes(search)) {
+               dataGetNew.push(element);
             }
         }
     }
-    return dataGetNew2;
 })()
-            console.log(dataGetNew2)
- // console.log(searchs2(search));
-            let searchHotels2 = dataGetNew2.reduce((prev, hotel) => {
+            console.log(dataGetNew)
+            let searchHotels = dataGetNew.reduce((prev, hotel) => {
                 return prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
                     <div class="hotel-img col-sm-12">
                        <img src="${hotel.imageUrl}" alt="picture">
@@ -219,21 +228,11 @@ btnSearchHeader.addEventListener('click', (event) => {
                     <p><span>${hotel.city}, ${hotel.country}</span></p>
                     </div>`
             }, '')
-            const searchDiv2 = document.getElementById("searchResult")
-            searchDiv2.innerHTML = searchHotels2
+            const searchDiv = document.getElementById("searchResult")
+            searchDiv.innerHTML = searchHotels
 //
 
-             // let searchHotels = dataGetNew2.reduce((prev, hotel) => {
-             //     return prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
-             //        <div class="hotel-img col-sm-12">
-             //           <img src="${hotel.imageUrl}" alt="picture">
-             //        </div>
-             //        <p>${hotel.name}</p>
-             //        <p><span>${hotel.city}, ${hotel.country}</span></p>
-             //        </div>`
-             //        }, '')
-             //     const searchDiv = document.getElementById("searchResult")
-             //     searchDiv.innerHTML = searchHotels
+
 
 
 
