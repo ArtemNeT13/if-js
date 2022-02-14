@@ -153,7 +153,10 @@ document.getElementById("counter-rooms-minus").onclick = () => {
 
 //                              LESSON-12.2
 
-const urlGet = 'https://fe-student-api.herokuapp.com/api/hotels'
+const urlGet = 'https://fe-student-api.herokuapp.com/api/hotels';
+
+
+
 const btnSearchHeader = document.getElementById('btnSearchHeader')
 btnSearchHeader.addEventListener('click', (event) => {
     event.preventDefault()
@@ -162,39 +165,73 @@ btnSearchHeader.addEventListener('click', (event) => {
     let children = document.getElementById('children-value').value
     let rooms = document.getElementById('rooms-value').value
 
-    let isValid = false;
-
-    if(Number(children) > 0 && Number(adults) === 0){
-        return  alert('ВНИМАНИЕ! Дети не могут путешествовать без взрослых!')
-    }else {
-        if(Number(children) === 1) {
+    if (Number(children) > 0 && Number(adults) === 0) {
+        return alert('ВНИМАНИЕ! Дети не могут путешествовать без взрослых!')
+    } else {
+        if (Number(children) === 1) {
             children = selectAge.querySelector("select").value
-        }else{
+        } else {
             children = ''
-            for(let value of selectAge.querySelectorAll("select")){
+            for (let value of selectAge.querySelectorAll("select")) {
                 children += `${value.value},`
             }
         }
     }
-    fetch(`${urlGet}?search=${search}&adults=${adults}&children=${children}&rooms=${rooms}`)
-        .then((response) => response.json())
-        .then((dataGet) => {
-            const availableHotels = document.getElementById("availableHotels")
-            availableHotels.style.display = "flex";
 
-            const dataGetNew = dataGet.slice(0, 4).sort();
-            let searchHotels = dataGetNew.reduce((prev, hotel) => {
-                return prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
+
+    fetch(urlGet)
+        .then((response) => {
+            return response.json()
+                .then((data) => {
+                    const hotelData = JSON.stringify(data);
+                    sessionStorage.setItem('ajaxRequest', hotelData)
+                })
+        })
+    const ajaxRequest = sessionStorage.getItem("ajaxRequest");
+    if (ajaxRequest) {
+        console.log(sessionStorage.getItem("ajaxRequest"))
+
+        const availableHotels = document.getElementById("availableHotels")
+        availableHotels.style.display = "flex";
+        // console.log(sessionStorage.ajaxRequest)
+        const dataGetNew = JSON.stringify(ajaxRequest).slice(0, 4);
+
+        const searchDiv = document.getElementById("searchResult")
+
+        searchDiv.innerHTML = dataGetNew?.map((hotel) => {
+            `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
                     <div class="hotel-img col-sm-12">
                        <img src="${hotel.imageUrl}" alt="picture">
                     </div>
                     <p>${hotel.name}</p>
                     <p><span>${hotel.city}, ${hotel.country}</span></p>
                     </div>`
-            }, '')
-            const searchDiv = document.getElementById("searchResult")
-            searchDiv.innerHTML = searchHotels
-        })
+        }, '')
+
+
+    }
 })
+
+
+//     fetch(`${urlGet}?search=${search}&adults=${adults}&children=${children}&rooms=${rooms}`)
+//         .then((response) => response.json())
+//         .then((dataGet) => {
+//             const availableHotels = document.getElementById("availableHotels")
+//             availableHotels.style.display = "flex";
+//             console.log(dataGet)
+//             const dataGetNew = dataGet.slice(0, 4).sort();
+//             let searchHotels = dataGetNew.reduce((prev, hotel) => {
+//                 return prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
+//                     <div class="hotel-img col-sm-12">
+//                        <img src="${hotel.imageUrl}" alt="picture">
+//                     </div>
+//                     <p>${hotel.name}</p>
+//                     <p><span>${hotel.city}, ${hotel.country}</span></p>
+//                     </div>`
+//             }, '')
+//             const searchDiv = document.getElementById("searchResult")
+//             searchDiv.innerHTML = searchHotels
+//         })
+// })
 
 
