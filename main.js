@@ -128,34 +128,33 @@ document.getElementById("counter-rooms-minus").onclick = () => {
 //     });
 
 //способ 2
-(hotelsDataRequest = async () => {
-    try{
-        let url = 'https://fe-student-api.herokuapp.com/api/hotels/popular'
-        const response = await fetch(url);
-        const data = await response.json();
-        const dataNew = data.slice(0, 4);
-        let favoriteHotels = dataNew.reduce((prev, hotel) => {
-            return  prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
-                <div class="hotel-img col-sm-12">
-                   <img src="${hotel.imageUrl}" alt="picture">
-                </div>
-                <p>${hotel.name}</p>
-                <p><span>${hotel.city}, ${hotel.country}</span></p>
-            </div>`
-        },'')
-        const currentDiv = document.getElementById("homeGuests")
-        currentDiv.innerHTML = favoriteHotels
-    } finally {
-
-    }
-})()
+// (hotelsDataRequest = async () => {
+//     try{
+//         let url = 'https://fe-student-api.herokuapp.com/api/hotels/popular'
+//         const response = await fetch(url);
+//         const data = await response.json();
+//         const dataNew = data.slice(0, 4);
+//         let favoriteHotels = dataNew.reduce((prev, hotel) => {
+//             return  prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
+//                 <div class="hotel-img col-sm-12">
+//                    <img src="${hotel.imageUrl}" alt="picture">
+//                 </div>
+//                 <p>${hotel.name}</p>
+//                 <p><span>${hotel.city}, ${hotel.country}</span></p>
+//             </div>`
+//         },'')
+//         const currentDiv = document.getElementById("homeGuests")
+//         currentDiv.innerHTML = favoriteHotels
+//
+//     } finally {
+//
+//     }
+// })()
 
 
 //                              LESSON-12.2
 
 const urlGet = 'https://fe-student-api.herokuapp.com/api/hotels';
-
-
 
 const btnSearchHeader = document.getElementById('btnSearchHeader')
 btnSearchHeader.addEventListener('click', (event) => {
@@ -179,59 +178,57 @@ btnSearchHeader.addEventListener('click', (event) => {
     }
 
 
-    fetch(urlGet)
-        .then((response) => {
-            return response.json()
-                .then((data) => {
-                    const hotelData = JSON.stringify(data);
-                    sessionStorage.setItem('ajaxRequest', hotelData)
-                })
-        })
-    const ajaxRequest = sessionStorage.getItem("ajaxRequest");
-    if (ajaxRequest) {
-        console.log(sessionStorage.getItem("ajaxRequest"))
-
-        const availableHotels = document.getElementById("availableHotels")
-        availableHotels.style.display = "flex";
-        // console.log(sessionStorage.ajaxRequest)
-        const dataGetNew = JSON.stringify(ajaxRequest).slice(0, 4);
-
-        const searchDiv = document.getElementById("searchResult")
-
-        searchDiv.innerHTML = dataGetNew?.map((hotel) => {
-            `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
+    fetch(`${urlGet}?search=${search}&adults=${adults}&children=${children}&rooms=${rooms}`)
+        .then((response) => response.json())
+        .then((dataGet) => {
+            const availableHotels = document.getElementById("availableHotels")
+            availableHotels.style.display = "flex";
+            console.log(dataGet)
+            const dataGetNew = dataGet.slice(0, 4).sort();
+            let searchHotels = dataGetNew.reduce((prev, hotel) => {
+                return prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
                     <div class="hotel-img col-sm-12">
                        <img src="${hotel.imageUrl}" alt="picture">
                     </div>
                     <p>${hotel.name}</p>
                     <p><span>${hotel.city}, ${hotel.country}</span></p>
                     </div>`
-        }, '')
-
-
-    }
+            }, '')
+            const searchDiv = document.getElementById("searchResult")
+            searchDiv.innerHTML = searchHotels
+        })
 })
 
+//                              LESSON-13
 
-//     fetch(`${urlGet}?search=${search}&adults=${adults}&children=${children}&rooms=${rooms}`)
-//         .then((response) => response.json())
-//         .then((dataGet) => {
-//             const availableHotels = document.getElementById("availableHotels")
-//             availableHotels.style.display = "flex";
-//             console.log(dataGet)
-//             const dataGetNew = dataGet.slice(0, 4).sort();
-//             let searchHotels = dataGetNew.reduce((prev, hotel) => {
-//                 return prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
-//                     <div class="hotel-img col-sm-12">
-//                        <img src="${hotel.imageUrl}" alt="picture">
-//                     </div>
-//                     <p>${hotel.name}</p>
-//                     <p><span>${hotel.city}, ${hotel.country}</span></p>
-//                     </div>`
-//             }, '')
-//             const searchDiv = document.getElementById("searchResult")
-//             searchDiv.innerHTML = searchHotels
-//         })
-// })
+const url = 'https://fe-student-api.herokuapp.com/api/hotels/popular'
+const requestToStorage = sessionStorage.getItem("ajaxRequest");
 
+function requestDataHotels (data) {
+// debugger
+    const dataNew = data.slice(0, 4);
+    const hotelData = JSON.stringify(data);
+    sessionStorage.setItem('ajaxRequest', hotelData)
+    let favoriteHotels = dataNew.reduce((prev, hotel) => {
+        return  prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
+                <div class="hotel-img col-sm-12">
+                   <img src="${hotel.imageUrl}" alt="picture">
+                </div>
+                <p>${hotel.name}</p>
+                <p><span>${hotel.city}, ${hotel.country}</span></p>
+            </div>`
+    },'')
+    const currentDiv = document.getElementById("homeGuests")
+    currentDiv.innerHTML = favoriteHotels
+}
+if (requestToStorage) {
+    const requestToStorageParse = JSON.parse(requestToStorage)
+    requestDataHotels(requestToStorageParse)
+}else{
+    fetch(url)
+        .then((response) => response.json())
+        .then((dataGet) => {
+            requestDataHotels(dataGet)
+        })
+}
 
