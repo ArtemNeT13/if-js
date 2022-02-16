@@ -205,22 +205,33 @@ const url = 'https://fe-student-api.herokuapp.com/api/hotels/popular'
 const requestToStorage = sessionStorage.getItem("ajaxRequest");
 
 function requestDataHotels (data) {
-// debugger
-    const dataNew = data.slice(0, 4);
-    const hotelData = JSON.stringify(data);
-    sessionStorage.setItem('ajaxRequest', hotelData)
-    let favoriteHotels = dataNew.reduce((prev, hotel) => {
-        return  prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
+    //при помощи map
+    let favoriteHotels = data.map(hotel => {
+        return `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
                 <div class="hotel-img col-sm-12">
                    <img src="${hotel.imageUrl}" alt="picture">
                 </div>
                 <p>${hotel.name}</p>
                 <p><span>${hotel.city}, ${hotel.country}</span></p>
             </div>`
-    },'')
+    })
     const currentDiv = document.getElementById("homeGuests")
-    currentDiv.innerHTML = favoriteHotels
+    currentDiv.innerHTML = favoriteHotels.join('')
+
+    // при помощи reduce
+    // let favoriteHotels = data.reduce((prev, hotel) => {
+     //      return prev += `<div class="hotel-foto foto-on col-xl-3 col-sm-6">
+     //       <div class="hotel-img col-sm-12">
+     //           <img src="${hotel.imageUrl}" alt="picture">
+     //       </div>
+     //       <p>${hotel.name}</p>
+     //        <p><span>${hotel.city}, ${hotel.country}</span></p>
+     //        </div>`
+     //  }, '')
+    // const currentDiv = document.getElementById("homeGuests")
+    // currentDiv.innerHTML = favoriteHotels
 }
+
 if (requestToStorage) {
     const requestToStorageParse = JSON.parse(requestToStorage)
     requestDataHotels(requestToStorageParse)
@@ -228,7 +239,9 @@ if (requestToStorage) {
     fetch(url)
         .then((response) => response.json())
         .then((dataGet) => {
-            requestDataHotels(dataGet)
+            requestDataHotels(dataGet.slice(0, 4))
+            const hotelData = JSON.stringify(dataGet.slice(0, 4));
+            sessionStorage.setItem('ajaxRequest', hotelData)
         })
 }
 
