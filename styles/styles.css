@@ -217,10 +217,14 @@ h2{
     align-items: center;
     justify-content: center;
 }
+.filter-block:hover .filter-input-parameters{
+    display: block;
+}
 
 .filter-block:hover .filter-label{
     display: none;
 }
+
 .filter-label{
     width: 314px;
     color: #383838;
@@ -253,6 +257,86 @@ h2{
     margin-left: -3px;
     border-radius: 8px;
     border: 3px solid #F5BD41;
+}
+
+
+
+.filter-input-parameters{
+    display: none;
+    width: 259px;
+    height: 158px;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    border-radius: 8px;
+}
+
+.filter-values{
+    display: block;
+    padding-top: 10px;
+}
+.filter-values-members{
+    display: flex;
+    height: 33.33%;
+    margin: 12px 22px;
+    align-items: center;
+    justify-content: space-between;
+}
+.filter-values input{
+    width: 48px;
+}
+.filter-values p{
+    font-weight: 400;
+    font-size: 16px;
+    color: #333333;
+    width: 50%;
+}
+.filter-values-members div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.color-value-active{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: #3077C6;
+    border: solid #3077C6 1px;
+}
+.color-value-inactive{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: #CECECE;
+    border: solid #CECECE 1px;
+}
+.parameters-children-age{
+    display: none;
+    padding-bottom: 18px;
+    width: 259px;
+    min-height: 98px;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.parameters-children-age p{
+    font-weight: 400;
+    font-size: 12px;
+    color: #333333;
+    padding: 6px 22px 12px 19px;
+}
+.parameters-children-age select{
+    width: 99px;
+    height: 30px;
+    padding-left: 3px;
+    margin: 4px 4px 4px 19px;
+    font-size: 12px;
+    font-weight: 400;
+    border-color: #3077C6;
+
 }
 .filter-block span{
     color: #383838;
@@ -304,6 +388,14 @@ section{
     margin-top: 20px;
     border-bottom: 4px solid #F5BD41;
 }
+
+.availableHotels{
+    display: none;
+    position: relative;
+    background: #EAF0F9;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 .offer {
     display: flex;
     flex-direction: column;
@@ -335,9 +427,13 @@ section{
     order: 2;
 }
 .offer-hotel{
-
     display: flex;
     justify-content: space-between;
+    margin-top: 105px;
+    padding-bottom: 120px;
+}
+.search-hotel{
+    display: flex;
     margin-top: 105px;
     padding-bottom: 120px;
 }
@@ -348,13 +444,13 @@ section{
     position: relative;
 }
 .hotel-img img{
-    width: 100%;
+    width: 300px;
+    height: 300px;
 }
 .arrow-right-hotel{
     position: absolute;
-    top: 51%;
-    right: 105px;
-    transform: translate(50%, -50%);
+    top: 50%;
+    right: 0px;
 }
 .arrow-right{
     position: absolute;
