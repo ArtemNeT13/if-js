@@ -25,8 +25,8 @@ fetch(url)
         let dataGetNew = [...dataGet];
         let dataGetNew2 = [...dataGet];
         dataGetNew2.sort((prev, next) => {
-            if ( prev.name < next.name ) return -1;
             if ( prev.name < next.name ) return 1;
+
         });
         console.log(`Sort by method "sort()":`)
         console.log(dataGetNew2)
@@ -63,3 +63,24 @@ function stack (str) {
     }
 }
 console.log(stack(strValue));
+
+//                              WebDev
+//
+// let servResponse = document.querySelector('#response')
+//
+// document.forms.ourForm.onsubmit = function (e) {
+//     e.preventDefault();
+//
+//     let userInput = document.getElementById('ourForm__inp').value;
+//
+//     let xhr = new XMLHttpRequest();
+//
+//     xhr.open('GIT', '')
+// }
+
+
+
+
+
+
+
